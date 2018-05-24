@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件使用中的细节点</title>
+    <script src="../vue.js"></script>
+</head>
+
+<!-- 1.父组件向子组件传递数据时候，使用属性传值props，
+    该传值为单向数据流传递，
+    子组件不允许更改由父组件传递过来的值，
+    通过data进行赋值改变 -->
+
+<!-- 2.子组件向父组件传递数据，
+通过事件的形式向父组件触发事件 this.$emit("abc",1),用该函数的参数进行传递，在子组件的标签上进行监听 -->
+
+<body>
+    <div id="root">
+
+    </div>
+
+
+    <script>
+
+        var vm = new Vue({
+            el: '#root'
+        });
+    </script>
+</body>
+
+</html>
