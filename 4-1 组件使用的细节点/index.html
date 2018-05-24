@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件使用中的细节点</title>
+    <script src="../vue.js"></script>
+</head>
+<!-- 1.H5中在使用table标签的时候，子标签必须是tr标签，
+如果在vue中使用组件形式引入标签会出现渲染出来的tr标签与table同级情况，
+这个时候，我们使用vue中的is属性来解决，
+同理相应的标签还有：ul、ol、select -->
+
+<!-- 2.在子组件中使用data属性的时候，必须是一个函数的形式，而不可以是一个对象，
+因为子组件会被调用多次，里面的data数据是不应该被共享的，而是每个子组件都有自己的data属性 -->
+
+<!-- 3.在vue中获取DOM节点，需要使用ref属性，当该节点是一个普通的类似div的标签，可以按常规的方式进行使用
+如果该节点是一个组件，设置ref属性，在获取的时候就代表该组件，获取方式：this.$refs.hello 
+通过一个计数器示例来演示，
+需求：设计一个计数器组件，每点击一次+1，在父组件中求两个组件的和-->
+
+<body>
+    <div id="root">
+        <table>
+            <tbody>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="app">
+        <counter ref="one" @change="handleClickChange"></counter>
+        <counter ref="two" @change="handleClickChange"></counter>
+        <div>{{total}}</div>
+    </div>
+
+    <script>
+
+        // 细节3示例
+
+        Vue.component('counter', {
+            data: function () {
+                return {
+                    number: 0
+                }
+            },
+            template: '<div @click="handleClick">{{number}}</div>',
+            methods: {
+                handleClick: function () {
+                    this.number++;
+                    this.$emit("change");
+                },
+
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                total: 0
+            },
+            methods: {
+                handleClickChange: function () {
+                    this.total = this.$refs.one.number + this.$refs.two.number;
+                }
+            }
+
+        });
+
+
+        // 细节 1、2 示例
+        Vue.component('row', {
+            data: function () {
+                return {
+                    content: 'abc'
+                }
+            },
+            template: '<tr><td>{{content}}</td></tr>'
+        });
+
+        var vm = new Vue({
+            el: '#root'
+        });
+    </script>
+</body>
+
+</html>
