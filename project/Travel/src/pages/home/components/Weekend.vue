@@ -18,26 +18,12 @@
 <script>
   export default {
     name: 'HomeWeekend',
+    props: {
+      list: Array
+    },
     data() {
       return {
-        list: [{
-          id: '0001',
-          imgUrl: 'http://img1.qunarzz.com/sight/source/1507/d9/2ddc7652fdba16.jpg_r_640x214_5e62f1a3.jpg',
-          title: '大梅沙',
-          desc: '这里是介绍部分啊'
-        },
-        {
-          id: '0002',
-          imgUrl: 'http://img1.qunarzz.com/sight/source/1507/d9/2ddc7652fdba16.jpg_r_640x214_5e62f1a3.jpg',
-          title: '大梅沙',
-          desc: '这里是介绍部分啊'
-        },
-        {
-          id: '0003',
-          imgUrl: 'http://img1.qunarzz.com/sight/source/1507/d9/2ddc7652fdba16.jpg_r_640x214_5e62f1a3.jpg',
-          title: '大梅沙',
-          desc: '这里是介绍部分啊'
-        }]
+
       }
     }
   }
