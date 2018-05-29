@@ -29,6 +29,7 @@ module.exports = {
     "no-unused-vars":'off',
     "space-before-function-paren":'off',
     "semi": "off",
-    "quotes":"off"
+    "quotes":"off",
+    "eol-last":"off"
   }
 }
