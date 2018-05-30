@@ -2,37 +2,37 @@
   <div>
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item" v-for="item in list" :key="item.id">
-        <div class="item-img-wrapper">
-          <img :src="item.imgUrl" alt="" class="item-img" />
-        </div>
+      <router-link
+        tag="li"
+        class="item border-bottom"
+        v-for="item of list"
+        :key="item.id"
+        :to="'/detail/' + item.id"
+      >
+        <img class="item-img" :src="item.imgUrl" />
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
           <p class="item-desc">{{item.desc}}</p>
           <button class="item-button">查看详情</button>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'HomeRecommend',
-    props: {
-      list: Array
-    },
-    data() {
-      return {
-
-      }
-    }
+export default {
+  name: 'HomeRecommend',
+  props: {
+    list: Array
   }
+}
 </script>
 
 <style lang="stylus" scoped>
   @import '~styles/mixins.styl'
   .title
+    margin-top: .2rem
     line-height: .8rem
     background: #eee
     text-indent: .2rem
